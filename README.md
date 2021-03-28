@@ -12,7 +12,28 @@ npm i react-native-swiper
 
 # Basic usage
 ```JS
+    // create the array of screens with your screen component and tab label
+    const data = [
+        {
+            component: <FirstScreen/>,
+            tabLabel: 'First Screen'
+        },
+        {
+            component: <SecondScreen/>,
+            tabLabel: 'Second Screen'
+        },
+        {
+            component: <ThirdScreen/>,
+            tabLabel: 'Third Screen'
+        },
+    ];
 
+    return (
+        // then just put it inside a data prop in swiper 
+        // and that's all ! Very simple 
+        <Swiper data={data}/>
+    );
+}
 ```
 
 # Props
