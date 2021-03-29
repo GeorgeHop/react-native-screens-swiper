@@ -9,6 +9,9 @@ npm i react-native-screens-swiper
 
 ## Example
 
+Uploading Screenrecorder-2021-03-29-11-56-50-611.mp4…
+
+Uploading Screenrecorder-2021-03-29-11-55-00-104.mp4…
 
 ## Basic usage
 ```JS
