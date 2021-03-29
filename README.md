@@ -12,7 +12,7 @@ npm i react-native-screens-swiper
 
 ## Basic usage
 ```JS
-    import Swiper from "react-native-screens-swiper/Swiper";
+import Swiper from "react-native-screens-swiper/Swiper";
 
 export const YourComponent = () => {
     // create the array of screens with your screen component and tab label
