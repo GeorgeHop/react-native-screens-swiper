@@ -5,7 +5,7 @@ import {usePrevious} from "./helpers/usePrevious";
 
 const width = Dimensions.get('window').width;
 
-const Swiper = ({data, screenIndex, pillStyle, activeLabelStyles, activePillStyles, pillContainerStyles, isStaticPills, ...rest}) => {
+const Swiper = ({style, data, screenIndex, pillStyle, activeLabelStyles, activePillStyles, pillContainerStyles, isStaticPills, ...rest}) => {
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
     const buttonRef = useRef(null);
@@ -53,7 +53,7 @@ const Swiper = ({data, screenIndex, pillStyle, activeLabelStyles, activePillStyl
             <View
                 style={[
                     styles.pillContainer,
-                    !!pillContainerStyles ? pillContainerStyles : '',
+                    style?.pillContainer,
                     isStaticPills && {
                         backgroundColor: 'white',
                         paddingTop: 12,
@@ -69,7 +69,7 @@ const Swiper = ({data, screenIndex, pillStyle, activeLabelStyles, activePillStyl
                         data={data}
                         currentIndex={currentIndex}
                         x={x}
-                        activePillStyles={activePillStyles}
+                        activePillStyles={style}
                         flatList={flatList}
                     />
                 ) : (
@@ -84,15 +84,19 @@ const Swiper = ({data, screenIndex, pillStyle, activeLabelStyles, activePillStyl
                                 ref={buttonRef}
                                 onLayout={onLayout(index)}
                                 style={[
-                                    !!pillStyle ? pillStyle : styles.pillButton,
-                                    index === currentIndex ? !!activePillStyles ? activePillStyles : styles.pillActive : '']}
+                                    styles.pillButton,
+                                    style?.pillButton,
+                                    index === currentIndex && styles.pillActive,
+                                    index === currentIndex && style?.pillActive,
+                                ]}
                                 onPress={() => flatList?.current?.scrollToIndex({index})}
                             >
                                 {item.icon}
                                 <Text
                                     style={[
+                                        style?.pillLabel,
                                         styles.pillLabel,
-                                        index === currentIndex ? !!activeLabelStyles ? activeLabelStyles : styles.pillLabelActive : '']}>
+                                        index === currentIndex ? (!!style?.activeLabel ? style?.activeLabel : styles.pillLabelActive) : '']}>
                                     {item.tabLabel}
                                 </Text>
                             </TouchableOpacity>

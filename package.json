@@ -1,6 +1,6 @@
 {
-  "name": "react-native-swiper",
-  "version": "1.0.0",
+  "name": "react-native-screens-swiper",
+  "version": "1.0.1",
   "description": "This lib. provide swiper view functionality with tab navigation on the top.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/GeorgeHop/react-native-swiper.git"
+    "url": "git+https://github.com/GeorgeHop/react-native-screens-swiper.git"
   },
   "keywords": [
     "react-native",
@@ -26,7 +26,7 @@
   "author": "George Hope, Dmytro Kardava",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/GeorgeHop/react-native-swiper/issues"
+    "url": "https://github.com/GeorgeHop/react-native-screens-swiper/issues"
   },
-  "homepage": "https://github.com/GeorgeHop/react-native-swiper#readme"
+  "homepage": "https://github.com/GeorgeHop/react-native-screens-swiper#readme"
 }

@@ -23,15 +23,14 @@ export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList})
                             width: width / data?.length - 20,
                             justifyContent: 'center',
                             alignItems: 'center',
-                        }]}
+                        }, activePillStyles?.pillButton && activePillStyles?.pillButton]}
                         onPress={() => flatList?.current?.scrollToIndex({index})}
                     >
                         <Text
-                            style={[{
-                                color: 'red',
-                                //opacity: getOpacity(index, x) + .5,
-                                marginBottom: 10,
-                            }]}
+                            style={[
+                                activePillStyles && activePillStyles?.pillLabel,
+                                index === currentIndex ? !!activePillStyles?.pillLabel ? activePillStyles?.pillLabel : {color: 'red', marginBottom: 10,} : '',
+                            ]}
                         >
                             {item.tabLabel}
                         </Text>
@@ -44,7 +43,7 @@ export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList})
                             // for fade in and fade out animation
                             opacity: getOpacity(index, x),
                         },
-                            activePillStyles ? activePillStyles : {borderColor: 'red', borderBottomWidth: 2,}]}
+                        !!activePillStyles?.borderActive ? activePillStyles?.borderActive : {borderColor: 'red', borderBottomWidth: 2,}]}
                     >
                     </View>
                 </View>
