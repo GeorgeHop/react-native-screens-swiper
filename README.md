@@ -63,6 +63,29 @@ But if you need to change something more than type of nav. Lets take a look on s
 
 ## Custom styling
 
+If you need t ochange the styles of the pills don't wory ! You can customize everything how you want.
+But please be careful ! Because this is the first version of the lib. And we think that in lib. can have some issues with the styling.
+If you have any problems ! Just write to us :)
+ ```JS
+    return (
+        <Swiper 
+            data={data}
+            // This props. will change your default pill style size, color, and any other ! You can change everything.
+            pillStyle={
+                backgroundColor: 'red',
+            }
+            // Ah and this i think for active pill.
+            activePillStyles={
+                backgroundColor: 'black',
+            }
+            // And this for container style
+            pillContainerStyles={
+                height: 90,
+                padding: 10,
+            }
+        />
+    );
+```
 
 ## Props
 Below are the props you can pass to the React Component.
@@ -71,8 +94,7 @@ Below are the props you can pass to the React Component.
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | data  | array | | [{component: 'your first screen component', tabLabel: 'first screen tabLabel'}, {component: 'your second screen component', tabLabel: 'second screen tabLabel'}] | Put array of screens with tab labels for displaying inside the component |
 | isStaticPills | boolean | false | isStaticPills={true} | When you need static navigation without scroll |
-| screenIndex | int | | screenIndex={0} | 
-|
+| screenIndex | int | | screenIndex={0} | The specific screen which you want to show like initial. |
 
 ## ToDo
 
