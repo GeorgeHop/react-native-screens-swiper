@@ -95,6 +95,9 @@ Below are the props you can pass to the React Component.
 | data  | array | | [{component: 'your first screen component', tabLabel: 'first screen tabLabel'}, {component: 'your second screen component', tabLabel: 'second screen tabLabel'}] | Put array of screens with tab labels for displaying inside the component |
 | isStaticPills | boolean | false | isStaticPills={true} | When you need static navigation without scroll |
 | screenIndex | int | | screenIndex={0} | The specific screen which you want to show like initial. |
+| pillStyle | object | | {backgroundColor: 'black'} | The styles object for pills |
+| activeLabelStyle | object | | {color: 'white'} | Set the active pill font color | 
+| activePillStyle | object | | {backgroundColor: 'red'} | Set the active pill style |
 
 ## ToDo
 
