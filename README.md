@@ -9,7 +9,6 @@ npm i react-native-swiper
 # Example
 
 
-
 # Basic usage
 ```JS
     // create the array of screens with your screen component and tab label
@@ -35,6 +34,10 @@ npm i react-native-swiper
     );
 }
 ```
+
+# Custom styling
+
+# Scrollable buttons & Static buttons
 
 # Props
 Below are the props you can pass to the React Component.
