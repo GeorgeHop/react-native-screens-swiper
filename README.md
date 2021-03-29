@@ -47,6 +47,15 @@ export const YourComponent = () => {
 
 If you want to use the buttons on top like this...
 Just make isStaticPills prop. true :) And that's all
+```JS
+    return (
+        <Swiper 
+            data={data}
+            // That's only one line :)
+            isStaticPills={true}    
+        />
+    );
+``` 
 ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif)
 
 The scrollable buttons enabled b default! 
