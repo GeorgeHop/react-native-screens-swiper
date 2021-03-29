@@ -1,9 +1,9 @@
-# react-native-swiper
+# react-native-screens-swiper
 
 # Installation
 
 ``
-npm i react-native-swiper
+npm i react-native-screens-swiper
 ``
 
 # Example
