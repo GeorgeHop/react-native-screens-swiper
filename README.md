@@ -1,5 +1,5 @@
 # react-native-screens-swiper
-The very simple screens swiper lib. 
+The very simple screens swiper lib. with scrollable or static tab navigation. Fully supported on ios and android just take a look.
 
 # Installation
 
