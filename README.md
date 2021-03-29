@@ -1,4 +1,5 @@
 # react-native-screens-swiper
+The very simple screens swiper lib. 
 
 # Installation
 
