@@ -1,0 +1,32 @@
+{
+  "name": "react-native-swiper",
+  "version": "1.0.0",
+  "description": "This lib. provide swiper view functionality with tab navigation on the top.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeHop/react-native-swiper.git"
+  },
+  "keywords": [
+    "react-native",
+    "react",
+    "native",
+    "swipable",
+    "view",
+    "horizontal",
+    "tab",
+    "navigation",
+    "crossplatform",
+    "ios",
+    "android"
+  ],
+  "author": "George Hope, Dmytro Kardava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GeorgeHop/react-native-swiper/issues"
+  },
+  "homepage": "https://github.com/GeorgeHop/react-native-swiper#readme"
+}
