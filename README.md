@@ -65,7 +65,7 @@ But if you need to change something more than type of nav. Lets take a look on s
 
 ## Custom styling
 
-If you need to change the styles of the pills don't wory ! You can customize everything how you want.
+If you need to change the styles of the pills don't worry ! You can customize everything how you want.
 But please be careful ! Because this is the first version of the lib. And we think that in lib. can have some issues with the styling.
 If you have any problems ! Just write to us :)
 
