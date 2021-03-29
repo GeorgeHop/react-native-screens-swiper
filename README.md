@@ -60,12 +60,12 @@ Just make isStaticPills prop. true :) And that's all
 ```
 ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif) 
 
-The scrollable buttons enabled b default! 
+The scrollable buttons enabled by default! 
 But if you need to change something more than type of nav. Lets take a look on styling :)
 
 ## Custom styling
 
-If you need t ochange the styles of the pills don't wory ! You can customize everything how you want.
+If you need to change the styles of the pills don't wory ! You can customize everything how you want.
 But please be careful ! Because this is the first version of the lib. And we think that in lib. can have some issues with the styling.
 If you have any problems ! Just write to us :)
 
