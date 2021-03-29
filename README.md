@@ -47,10 +47,7 @@ export const YourComponent = () => {
 
 If you want to use the buttons on top like this...
 Just make isStaticPills prop. true :) And that's all
-
-| Code | Video |
-| ------------- | ------------- |
-| ```JS
+ ```JS
     return (
         <Swiper 
             data={data}
@@ -58,7 +55,8 @@ Just make isStaticPills prop. true :) And that's all
             isStaticPills={true}    
         />
     );
-```  | ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif) |
+```
+![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif) 
 
 The scrollable buttons enabled b default! 
 But if you need to change something more than type of nav. Lets take a look on styling :)
