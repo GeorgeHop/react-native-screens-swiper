@@ -7,10 +7,10 @@ The very simple screens swiper lib.
 npm i react-native-screens-swiper
 ``
 
-# Example
+## Example
 
 
-# Basic usage
+## Basic usage
 ```JS
     // create the array of screens with your screen component and tab label
     const data = [
@@ -36,18 +36,18 @@ npm i react-native-screens-swiper
 }
 ```
 
-# Custom styling
+## Custom styling
 
-# Scrollable buttons & Static buttons
+## Scrollable buttons & Static buttons
 
-# Props
+## Props
 Below are the props you can pass to the React Component.
 
 | Prop  | Type | Default | Example | Description |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | data  | array | | [{component: 'your first screen component', tabLabel: 'first screen tabLabel'}, {component: 'your second screen component', tabLabel: 'second screen tabLabel'}] | Put array of screens with tab labels for displaying inside the component |
 
-# ToDo
+## ToDo
 
 
 If you have something interesting ! Just write to us :)
