@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2ded9dd4-5f14-4404-934d-b160ae6a578e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Swiper.js" beforeDir="false" afterPath="$PROJECT_DIR$/Swiper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/StaticPills.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/StaticPills.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,11 +53,17 @@
       <option name="presentableId" value="Default" />
       <updated>1616942909761</updated>
       <workItem from="1616942910814" duration="4714000" />
-      <workItem from="1617028755210" duration="1906000" />
+      <workItem from="1617028755210" duration="3923000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="101" y="135" width="1187" height="922" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1617034074706">
+      <screen x="0" y="0" width="2752" height="1122" />
+    </state>
+    <state x="101" y="135" width="1187" height="922" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.372.1536.834/0.0.2752.1122@0.0.2752.1122" timestamp="1617034074706" />
   </component>
 </project>

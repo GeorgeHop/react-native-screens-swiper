@@ -28,8 +28,12 @@ export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList})
                     >
                         <Text
                             style={[
+                                {
+                                    color: 'red',
+                                    marginBottom: 10,
+                                },
                                 activePillStyles && activePillStyles?.pillLabel,
-                                index === currentIndex ? !!activePillStyles?.pillLabel ? activePillStyles?.pillLabel : {color: 'red', marginBottom: 10,} : '',
+                                index === currentIndex ? !!activePillStyles?.activeLabel ? activePillStyles?.activeLabel : {color: 'red', marginBottom: 10,} : '',
                             ]}
                         >
                             {item.tabLabel}
