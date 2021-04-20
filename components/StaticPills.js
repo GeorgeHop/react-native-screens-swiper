@@ -9,8 +9,6 @@ export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList})
         <View style={{
             flexDirection: 'row',
             justifyContent: 'space-around',
-            borderBottomWidth: 2,
-            borderColor: 'white',
             width: width - 20,
             paddingBottom: 8,
         }}>
