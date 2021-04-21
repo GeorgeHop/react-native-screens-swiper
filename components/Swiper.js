@@ -50,8 +50,12 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
     };
     const keyExtractor = (item, index) => String(index);
     const renderItem = ({item, index}) => (
-        <View key={index} style={{width}}>
-            {item.component}
+        <View style={{width}}>
+            {typeof item.component !== 'function' && item.component}
+            {typeof item.component === 'function' && item.component({
+                index,
+                ...(item.props || {}),
+            })}
         </View>
     );
 
