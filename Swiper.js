@@ -69,7 +69,7 @@ const Swiper = ({style, data, screenIndex, pillStyle, activeLabelStyles, activeP
                         data={data}
                         currentIndex={currentIndex}
                         x={x}
-                        activePillStyles={style}
+                        style={style}
                         flatList={flatList}
                     />
                 ) : (

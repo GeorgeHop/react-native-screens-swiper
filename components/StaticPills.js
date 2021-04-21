@@ -4,11 +4,13 @@ import {getOpacity} from "../helpers/getOpacity";
 
 const width = Dimensions.get('window').width;
 
-export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList}) => {
+export const StaticPills = ({data, style, x, currentIndex, flatList}) => {
     return (
         <View style={{
             flexDirection: 'row',
             justifyContent: 'space-around',
+            borderBottomWidth: 2,
+            borderColor: 'white',
             width: width - 20,
             paddingBottom: 8,
         }}>
@@ -18,20 +20,18 @@ export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList})
                         key={index}
                         style={[{
                             paddingHorizontal: 5,
+                            height: 40,
                             width: width / data?.length - 20,
-                            justifyContent: 'center',
                             alignItems: 'center',
-                        }, activePillStyles?.pillButton && activePillStyles?.pillButton]}
+                        }, style?.pillButton && style?.pillButton]}
                         onPress={() => flatList?.current?.scrollToIndex({index})}
                     >
                         <Text
                             style={[
-                                {
-                                    color: 'red',
-                                    marginBottom: 10,
-                                },
-                                activePillStyles && activePillStyles?.pillLabel,
-                                index === currentIndex ? !!activePillStyles?.activeLabel ? activePillStyles?.activeLabel : {color: 'red', marginBottom: 10,} : '',
+                                !!style?.pillLabel ? style.pillLabel : {color: 'gray'},
+                                index === currentIndex ?
+                                    !!style?.activeLabel ? style.activeLabel : style?.pillLabel
+                                    : '',
                             ]}
                         >
                             {item.tabLabel}
@@ -45,7 +45,7 @@ export const StaticPills = ({data, activePillStyles, x, currentIndex, flatList})
                             // for fade in and fade out animation
                             opacity: getOpacity(index, x),
                         },
-                        !!activePillStyles?.borderActive ? activePillStyles?.borderActive : {borderColor: 'red', borderBottomWidth: 2,}]}
+                            !!style?.borderActive ? style?.borderActive : {borderColor: 'red', borderBottomWidth: 2,}]}
                     >
                     </View>
                 </View>
