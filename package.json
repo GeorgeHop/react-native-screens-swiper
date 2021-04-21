@@ -3,9 +3,6 @@
   "version": "1.0.3",
   "description": "This lib. provide swiper view functionality with tab navigation on the top.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GeorgeHop/react-native-screens-swiper.git"
@@ -14,6 +11,11 @@
     "react-native",
     "react",
     "native",
+    "expo",
+    "screen",
+    "screens",
+    "swipe",
+    "swiper",
     "swipable",
     "view",
     "horizontal",
@@ -22,6 +24,18 @@
     "crossplatform",
     "ios",
     "android"
+  ],
+  "contributors": [
+    {
+      "name": "Dmytro Kardava",
+      "email": "dima.kardava@gmail.com",
+      "url": "https://github.com/dorkyboi"
+    },
+    {
+      "name": "Mutovkin Yurii",
+      "email": "georgehopekek@gmail.com",
+      "url": "https://github.com/GeorgeHop"
+    }
   ],
   "author": "George Hope, Dmytro Kardava",
   "license": "ISC",
