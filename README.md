@@ -23,11 +23,11 @@ yarn: `yarn add react-native-screens-swiper`
 
 ## Basic usage
 ```JS
+import Swiper from "react-native-screens-swiper";
 import FirstScreen from "./FirstScreen";
 import SecondScreen from "./SecondScreen";
-import Swiper from "react-native-screens-swiper/Swiper";
 
-export const YourComponent = () => {
+export default function YourComponent() {
     /**
      * Create an array with your screens' data - title, component and additional props.
      * Title is a string to be put inside of pill.
