@@ -4,52 +4,59 @@ import {getOpacity} from "../helpers/getOpacity";
 
 const width = Dimensions.get('window').width;
 
-export const StaticPills = ({data, style, x, currentIndex, flatList}) => {
+export default function StaticPills({data, style, x, currentIndex, onPillPress}) {
     return (
-        <View style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            borderBottomWidth: 2,
-            borderColor: 'white',
-            width: width - 20,
-            paddingBottom: 8,
-        }}>
+        <View style={styles.container}>
             {!!data?.length && data.map((item, index) => (
                 <View key={index}>
-                    <TouchableOpacity
-                        key={index}
-                        style={[{
+                    <TouchableOpacity key={index} onPress={onPillPress(index)} style={[
+                        {
                             paddingHorizontal: 5,
+                            width: width / data.length - 20,
                             height: 40,
-                            width: width / data?.length - 20,
                             alignItems: 'center',
-                        }, style?.pillButton && style?.pillButton]}
-                        onPress={() => flatList?.current?.scrollToIndex({index})}
-                    >
-                        <Text
-                            style={[
-                                !!style?.pillLabel ? style.pillLabel : {color: 'gray'},
-                                index === currentIndex ?
-                                    !!style?.activeLabel ? style.activeLabel : style?.pillLabel
-                                    : '',
-                            ]}
-                        >
+                        },
+                        style?.pillButton,
+                    ]}>
+                        <Text style={[
+                            style?.pillLabel || styles.pillLabel,
+                            index === currentIndex && (style?.activeLabel || styles.activePill),
+                        ]}>
                             {item.tabLabel}
                         </Text>
                     </TouchableOpacity>
-                    <View
-                        style={[{
+                    <View style={[
+                        {
                             marginHorizontal: 10,
                             borderColor: 'white',
                             borderBottomWidth: 2,
                             // for fade in and fade out animation
                             opacity: getOpacity(index, x),
                         },
-                            !!style?.borderActive ? style?.borderActive : {borderColor: 'red', borderBottomWidth: 2,}]}
-                    >
-                    </View>
+                        style?.borderActive || styles.activeBorder,
+                    ]}/>
                 </View>
             ))}
         </View>
-    )
+    );
 }
+
+const styles = {
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: width - 20,
+        paddingBottom: 8,
+    },
+    pillLabel: {
+        color: 'gray',
+    },
+    activePill: {
+        color: 'red',
+        marginBottom: 10,
+    },
+    activeBorder: {
+        borderColor: 'red',
+        borderBottomWidth: 2,
+    },
+};

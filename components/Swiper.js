@@ -1,11 +1,11 @@
-import React, {useCallback, useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {Dimensions, FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {StaticPills} from "./StaticPills";
+import StaticPills from "./StaticPills";
 import {usePrevious} from "../helpers/usePrevious";
 
 const width = Dimensions.get('window').width;
 
-const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pillContainerStyles, isStaticPills, ...rest}) => {
+export default function Swiper({style, data, isStaticPills, ...rest}) {
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
     const buttonRef = useRef(null);
@@ -14,23 +14,23 @@ const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pi
     const [buttonsCoords, setButtonsCoords] = useState([]);
     const [x, setX] = useState(0);
 
-    const handleScroll = useCallback((e) => {
+    const handleScroll = (e) => {
         setX(e.nativeEvent.contentOffset.x);
         const index = Math.round(e.nativeEvent.contentOffset.x / width);
         if (index !== currentIndex)
             setCurrentIndex(index);
-    }, [currentIndex]);
+    };
 
     // set all buttons coords on first swiper
-    const setCoords = useCallback((e, index) => {
+    const setCoords = (e, index) => {
         setButtonsCoords(buttonsCoords => {
             let buttons = [...buttonsCoords];
             buttons[index] = e;
             return buttons;
         });
-    }, []);
+    };
 
-    const buttonWatch = useCallback(() => {
+    const buttonWatch = () => {
         if (buttonsCoords[currentIndex] && prevIndex !== currentIndex) {
             const e = buttonsCoords[currentIndex];
             // for displaying the button in the center
@@ -41,12 +41,22 @@ const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pi
 
             scrollViewRef?.current?.scrollTo({x: coords, y: 0, animated: true});
         }
-    }, [currentIndex, prevIndex]);
+    };
 
-    const onLayout = useCallback(index => e => {
-        if (!buttonsCoords[index] || buttonsCoords[index].x !== e.x)
-            setCoords(e.nativeEvent.layout, index);
-    }, [buttonsCoords]);
+    const onLayout = index => e => (!buttonsCoords[index] || buttonsCoords[index].x !== e.x) && setCoords(e.nativeEvent.layout, index);
+
+    const onFlatListScroll = e => {
+        handleScroll(e);
+        buttonWatch();
+    };
+    const keyExtractor = (item, index) => String(index);
+    const renderItem = ({item, index}) => (
+        <View key={index} style={{width}}>
+            {item.component}
+        </View>
+    );
+
+    const onPillPress = index => () => flatList.current?.scrollToIndex({index});
 
     return (
         <>
@@ -54,25 +64,18 @@ const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pi
                 style={[
                     styles.pillContainer,
                     style?.pillContainer,
-                    isStaticPills && {
-                        backgroundColor: 'white',
-                        paddingTop: 12,
-                        paddingBottom: 8,
-                        paddingHorizontal: 0,
-                        borderBottomWidth: 0,
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }
+                    isStaticPills && styles.staticPillContainer,
                 ]}>
-                {isStaticPills ? (
+                {!!isStaticPills && (
                     <StaticPills
                         data={data}
                         currentIndex={currentIndex}
                         x={x}
                         style={style}
-                        flatList={flatList}
+                        onPillPress={onPillPress}
                     />
-                ) : (
+                )}
+                {!isStaticPills && (
                     <ScrollView
                         ref={scrollViewRef}
                         showsHorizontalScrollIndicator={false}
@@ -89,14 +92,14 @@ const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pi
                                     index === currentIndex && styles.pillActive,
                                     index === currentIndex && style?.pillActive,
                                 ]}
-                                onPress={() => flatList?.current?.scrollToIndex({index})}
+                                onPress={onPillPress(index)}
                             >
                                 {item.icon}
-                                <Text
-                                    style={[
-                                        style?.pillLabel,
-                                        styles.pillLabel,
-                                        index === currentIndex ? (!!style?.activeLabel ? style?.activeLabel : styles.pillLabelActive) : '']}>
+                                <Text style={[
+                                    styles.pillLabel,
+                                    style?.pillLabel,
+                                    index === currentIndex && (style?.activeLabel || styles.pillLabelActive),
+                                ]}>
                                     {item.tabLabel}
                                 </Text>
                             </TouchableOpacity>
@@ -108,26 +111,14 @@ const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pi
                 ref={flatList}
                 showsHorizontalScrollIndicator={false}
                 scrollEventThrottle={16}
-                onScroll={(e) => {
-                    handleScroll(e);
-                    buttonWatch();
-                }}
+                onScroll={onFlatListScroll}
                 pagingEnabled
-                keyExtractor={(item, index) => String(index)}
+                keyExtractor={keyExtractor}
                 horizontal={true}
                 data={data}
-                renderItem={({item, index}) => (
-                    <View
-                        key={index}
-                        style={{
-                            width: width
-                        }}
-                    >
-                        {item.component}
-                    </View>
-                )}
+                renderItem={renderItem}
                 snapToAlignment={'center'}
-                style={{flex: 1}}
+                style={styles.flatList}
                 {...rest}
             />
         </>
@@ -159,7 +150,17 @@ const styles = {
     pillContainer: {
         paddingHorizontal: 5,
         height: 35,
-    }
+    },
+    staticPillContainer: {
+        backgroundColor: 'white',
+        paddingTop: 12,
+        paddingBottom: 8,
+        paddingHorizontal: 0,
+        borderBottomWidth: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    flatList: {
+        flex: 1,
+    },
 };
-
-export default Swiper;
