@@ -59,7 +59,11 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
     const onPillPress = index => () => flatList.current?.scrollToIndex({index});
 
     return (
-        <>
+        <View
+            style={{
+                flex:1
+            }}
+        >
             <View
                 style={[
                     styles.pillContainer,
@@ -121,7 +125,7 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
                 style={styles.flatList}
                 {...rest}
             />
-        </>
+        </View>
     );
 };
 
@@ -149,7 +153,6 @@ const styles = {
     },
     pillContainer: {
         paddingHorizontal: 5,
-        height: 35,
     },
     staticPillContainer: {
         backgroundColor: 'white',

@@ -13,7 +13,6 @@ export default function StaticPills({data, style, x, currentIndex, onPillPress})
                         {
                             paddingHorizontal: 5,
                             width: width / data.length - 20,
-                            height: 40,
                             alignItems: 'center',
                         },
                         style?.pillButton,
