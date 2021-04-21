@@ -1,7 +1,7 @@
 import React, {useCallback, useRef, useState} from "react";
 import {Dimensions, FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {StaticPills} from "./components/StaticPills";
-import {usePrevious} from "./helpers/usePrevious";
+import {StaticPills} from "./StaticPills";
+import {usePrevious} from "../helpers/usePrevious";
 
 const width = Dimensions.get('window').width;
 
