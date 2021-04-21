@@ -1,18 +1,17 @@
 import React from 'react';
-import {Dimensions, Text, TouchableOpacity, View} from "react-native";
+import {useWindowDimensions, Text, TouchableOpacity, View} from "react-native";
 import {getOpacity} from "../helpers/getOpacity";
 
-const width = Dimensions.get('window').width;
-
 export default function StaticPills({data, style, x, currentIndex, onPillPress}) {
+    const width = useWindowDimensions().width;
     return (
         <View style={styles.container}>
             {!!data?.length && data.map((item, index) => (
                 <View key={index}>
-                    <TouchableOpacity key={index} onPress={onPillPress(index)} style={[
+                    <TouchableOpacity onPress={onPillPress(index)} style={[
                         {
                             paddingHorizontal: 5,
-                            width: width / data.length - 20,
+                            width: width / data.length,
                             alignItems: 'center',
                         },
                         style?.pillButton,
@@ -26,8 +25,9 @@ export default function StaticPills({data, style, x, currentIndex, onPillPress})
                     </TouchableOpacity>
                     <View style={[
                         {
+                            marginTop: 5,
                             marginHorizontal: 10,
-                            borderColor: 'white',
+                            borderColor: 'red',
                             borderBottomWidth: 2,
                             // for fade in and fade out animation
                             opacity: getOpacity(index, x),
@@ -44,7 +44,6 @@ const styles = {
     container: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: width - 20,
         paddingBottom: 8,
     },
     pillLabel: {
@@ -53,9 +52,5 @@ const styles = {
     activePill: {
         color: 'red',
         marginBottom: 10,
-    },
-    activeBorder: {
-        borderColor: 'red',
-        borderBottomWidth: 2,
     },
 };

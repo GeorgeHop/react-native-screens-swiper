@@ -1,11 +1,10 @@
 import React, {useRef, useState} from "react";
-import {Dimensions, FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
+import {useWindowDimensions, FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import StaticPills from "./StaticPills";
 import {usePrevious} from "../helpers/usePrevious";
 
-const width = Dimensions.get('window').width;
-
 export default function Swiper({style, data, isStaticPills, ...rest}) {
+    const width = useWindowDimensions().width;
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
     const buttonRef = useRef(null);
