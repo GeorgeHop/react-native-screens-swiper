@@ -5,7 +5,7 @@ import {usePrevious} from "../helpers/usePrevious";
 
 const width = Dimensions.get('window').width;
 
-const Swiper = ({style, data, screenIndex, pillStyle, activeLabelStyles, activePillStyles, pillContainerStyles, isStaticPills, ...rest}) => {
+const Swiper = ({style, data, pillStyle, activeLabelStyles, activePillStyles, pillContainerStyles, isStaticPills, ...rest}) => {
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
     const buttonRef = useRef(null);
@@ -127,7 +127,6 @@ const Swiper = ({style, data, screenIndex, pillStyle, activeLabelStyles, activeP
                     </View>
                 )}
                 snapToAlignment={'center'}
-                initialScrollIndex={screenIndex}
                 style={{flex: 1}}
                 {...rest}
             />
