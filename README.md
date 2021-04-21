@@ -1,211 +1,153 @@
 # react-native-screens-swiper
-The very simple screens swiper lib. with scrollable or static tab navigation. Fully supported on ios and android just take a look.
+Simple screens' swiper library with scrollable or static tab navigation. Fully supported on iOS and Android.
+
+<table>
+<tr>
+<td align="center">Scrollable Pills</td>
+<td align="center">Static Pills</td>
+</tr>
+<tr>
+<td>
+<img src="https://user-images.githubusercontent.com/47904385/112822780-a9950600-9088-11eb-91db-3b713a59128b.gif" alt="drawing" height="500"/>
+</td>
+<td>
+<img src="https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif" alt="drawing" height="500"/>
+</td>
+</tr>
+</table>
 
 # Installation
-
-``
-npm i react-native-screens-swiper
-``
-
-## Example
-
-The swiper have a two types of navigation. First one the scrollable pills navigation and the second one is static tab navigation.
-Yo can change the functionality by using just only one prop. For all additional info. just scroll down.
-
-| Scrollable Pills | Static Pills |
-| ---------------- | ---------------- |
-|![ezgif com-gif-maker (7)](https://user-images.githubusercontent.com/47904385/112822780-a9950600-9088-11eb-91db-3b713a59128b.gif) | ![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif) |
+expo: `expo install react-native-screens-swiper`  
+npm: `npm i react-native-screens-swiper`  
+yarn: `yarn add react-native-screens-swiper`
 
 ## Basic usage
 ```JS
+import FirstScreen from "./FirstScreen";
+import SecondScreen from "./SecondScreen";
 import Swiper from "react-native-screens-swiper/Swiper";
 
 export const YourComponent = () => {
-    // create the array of screens with your screen component and tab label
+    /**
+     * Create an array with your screens' data - title, component and additional props.
+     * Title is a string to be put inside of pill.
+     * Component can be either React component, render function or JSX element.
+     * Props - object with additional data for this particular screen.
+     * If it is a component or function, it will receive additional props specified above and additional `index` props
+     */
     const data = [
         {
+            tabLabel: 'Valid component in form of JSX element',
             component: <FirstScreen/>,
-            tabLabel: 'First Screen'
         },
         {
-            component: <SecondScreen/>,
-            tabLabel: 'Second Screen'
+            tabLabel: 'Valid component in form of React component',
+            component: SecondScreen,
+            props: {}, // (optional) additional props
         },
         {
-            component: <ThirdScreen/>,
-            tabLabel: 'Third Screen'
+            tabLabel: 'Valid component in form of render function',
+            component: ({index, ...props}) => {
+                return null;
+            },
+            props: {}, // (optional) additional props
         },
     ];
 
     return (
-        // then just put it inside a data prop in swiper 
-        // and that's all ! Very simple 
-        <Swiper data={data}/>
-    );
-}
-```
-
-## Scrollable buttons & Static buttons
-
-If you want to use the buttons on top like this...
-Just make isStaticPills prop. true :) And that's all
- ```JS
-    return (
-        <Swiper 
+        <Swiper
             data={data}
-            // That's only one line :)
-            isStaticPills={true}    
+            isStaticPills={true}
+            style={styles}
+            // FlatList props
         />
     );
-```
-![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/47904385/112823107-21fbc700-9089-11eb-9cb9-a869e31f453a.gif) 
+}
 
-The scrollable buttons enabled by default! 
-But if you need to change something more than type of nav. Lets take a look on styling :)
+// more about styling below
+const styles = {};
+```
 
 ## Custom styling
-
-If you need to change the styles of the pills don't worry ! You can customize everything how you want.
-But please be careful ! Because this is the first version of the lib. And we think that in lib. can have some issues with the styling.
-If you have any problems ! Just write to us :)
-
-Example for scrollable pills
-
- ```JS
- export default function App() {
+```JS
+export default function App() {
     return (
         <Swiper 
             data={data}
-            // Using this prop. you can change all components how you need.
             style={styles}
         />
     );
 }
 
-// Your styles here
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    // if you need to change some container things
-    pillContainer: {
-        height: 90,
-    },
-    // if you want to change the active border in static pills
-    borderActive: {
-        borderColor: 'red'
-    },
-    // if you need to change pill label color
-    pillLabel: {
-        color: 'gray'
-    },
-    // the same for active label
-    activeLabel: {
-        color: 'white'
-    },
-    // if you want to change pill button styles
-    pillButton: {
-        backgroundColor: 'white',
-        borderRadius: 50,
-        marginVertical: 5,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+const styles = {
+    // [View] Pills container
+    pillContainer: {},
 
-        elevation: 5,
-    },
-    // pill active for active button styles
-    pillActive: {
-        backgroundColor: '#ffb74d',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
+    // [View] Button
+    pillButton: {},
 
-        elevation: 5,
-    },
-});
+    // [View] Active button
+    pillActive: {},
+    
+    // [Text] Button's text
+    pillLabel: {},
+    
+    // [Text] Active button's text
+    activeLabel: {},
+    
+    // [View] Border of active pill (:warning: opacity will override animation's opacity)
+    borderActive: {},
+};
 ```
 
-Example for static pills
+### Example for scrollable pills
+<table>
+<tr>
+<td>
 
- ```JS
- export default function App() {
-    return (
-        <Swiper 
-            data={data}
-            // Using this prop. you can change all components how you need.
-            style={styles}
-        />
-    );
-}
-
-// Your styles here
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    pillContainer: {
-        height: 90,
-    },
-    // bottom border for active pill
+```JS
+const styles = {
     borderActive: {
-        borderColor: '#f06292'
+        borderColor: '#f06292',
     },
-    // styles for label 
     pillLabel: {
-        color: 'gray'
+        color: 'gray',
     },
-    // styles for active label
     activeLabel: {
-        color: '#ba2d65'
+        color: '#ba2d65',
     },
-});
+};
 ```
 
-And its look's like... 
-| Scrollable Pills | Static Pills |
-| ---------------- | ---------------- |
-| ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/47904385/112870894-fdbadd00-90be-11eb-8b7a-322a913af2d1.gif) | ![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/47904385/112871240-5b4f2980-90bf-11eb-9f15-d9673f247ad6.gif) |
+</td>
+<td>
+<img src="https://user-images.githubusercontent.com/47904385/112870894-fdbadd00-90be-11eb-8b7a-322a913af2d1.gif" alt="drawing" height="500"/>
+</td>
+</tr>
+</table>
 
-Styling props.
-Below are the styling props. which you can use.
+### Example for static pills
+<table>
+<tr>
+<td>
 
-| Prop  | Component |
-| ------------- | ------------- |
-| pillContainer | Will change the pills container |
-| pillLabel | Set the default pill label styles |
-| activeLabel | Set styles for the active label |
-| pillActive | Styles for active button |
-| pillButton | Set the default pill styles |
-| borderActive | Set the border active color for static pills |
+```JS
+const styles = {
+    borderActive: {
+        borderColor: '#f06292',
+    },
+    pillLabel: {
+        color: 'gray',
+    },
+    activeLabel: {
+        color: '#ba2d65',
+    },
+};
+```
 
-
-## Props
-Below are the props you can pass to the React Component.
-
-| Prop  | Type | Default | Example | Description |
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-| data  | array | | [{component: 'your first screen component', tabLabel: 'first screen tabLabel'}, {component: 'your second screen component', tabLabel: 'second screen tabLabel'}] | Put array of screens with tab labels for displaying inside the component |
-| isStaticPills | boolean | false | isStaticPills={true} | When you need static navigation without scroll |
-| style | object | | {pillContainer: {backgroundColor: 'black', height: 50}} | The styles object for styling the swiper details. More about styling in Custom styling step.|
-
-And you can use all other props for flat list.
-
-## ToDo
-
-
-If you have something interesting ! Just write to us :)
+</td>
+<td>
+<img src="https://user-images.githubusercontent.com/47904385/112871240-5b4f2980-90bf-11eb-9f15-d9673f247ad6.gif" alt="drawing" height="500"/>
+</td>
+</tr>
+</table>
