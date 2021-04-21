@@ -31,8 +31,8 @@ export default function YourComponent() {
     /**
      * Create an array with your screens' data - title, component and additional props.
      * Title is a string to be put inside of pill.
+     * Props is an object with additional data for a particular screen.
      * Component can be either React component, render function or JSX element.
-     * Props - object with additional data for this particular screen.
      * If it is a component or function, it will receive additional props specified above and additional `index` props
      */
     const data = [
