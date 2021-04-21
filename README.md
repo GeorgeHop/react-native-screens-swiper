@@ -203,6 +203,8 @@ Below are the props you can pass to the React Component.
 | isStaticPills | boolean | false | isStaticPills={true} | When you need static navigation without scroll |
 | style | object | | {pillContainer: {backgroundColor: 'black', height: 50}} | The styles object for styling the swiper details. More about styling in Custom styling step.|
 
+And you can use all other props for flat list.
+
 ## ToDo
 
 
