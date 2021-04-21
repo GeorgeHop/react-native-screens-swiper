@@ -33,7 +33,7 @@ export default function YourComponent() {
      * Title is a string to be put inside of pill.
      * Props is an object with additional data for a particular screen.
      * Component can be either React component, render function or JSX element.
-     * If it is a component or function, it will receive additional props specified above and additional `index` props
+     * If it is a component or function, it will receive above-mentioned props and additional 'index' props
      */
     const data = [
         {
