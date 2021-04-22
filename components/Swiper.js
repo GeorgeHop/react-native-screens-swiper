@@ -3,50 +3,41 @@ import {useWindowDimensions, FlatList, ScrollView, Text, TouchableOpacity, View}
 import StaticPills from "./StaticPills";
 import {usePrevious} from "../helpers/usePrevious";
 
-export default function Swiper({style, data, isStaticPills, ...rest}) {
+export default function Swiper({style, data, isStaticPills, initialScrollIndex, ...rest}) {
     const width = useWindowDimensions().width;
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
-    const buttonRef = useRef(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(initialScrollIndex || 0);
     const prevIndex = usePrevious(currentIndex);
-    const [buttonsCoords, setButtonsCoords] = useState([]);
+    const buttonsCoords = React.useRef([]).current;
     const [x, setX] = useState(0);
 
-    const handleScroll = (e) => {
+    // collect button layouts
+    const onButtonLayout = index => e => {
+        if (buttonsCoords[index]?.x !== e.x)
+            buttonsCoords[index] = e.nativeEvent.layout;
+    };
+    const onButtonPress = index => () => flatList.current?.scrollToIndex({index});
+
+    const onFlatListScroll = e => {
+        // update X
         setX(e.nativeEvent.contentOffset.x);
+
+        // update current screen index
         const index = Math.round(e.nativeEvent.contentOffset.x / width);
         if (index !== currentIndex)
             setCurrentIndex(index);
-    };
 
-    // set all buttons coords on first swiper
-    const setCoords = (e, index) => {
-        setButtonsCoords(buttonsCoords => {
-            let buttons = [...buttonsCoords];
-            buttons[index] = e;
-            return buttons;
-        });
-    };
-
-    const buttonWatch = () => {
+        // scroll to next button if have to
         if (buttonsCoords[currentIndex] && prevIndex !== currentIndex) {
-            const e = buttonsCoords[currentIndex];
-            // for displaying the button in the center
-            // we get half length of the button
-            const buttonWidth = e.width / 2
-            // and count new coords by getting element x + buttonWidth - half of screen width
-            const coords = e.x + buttonWidth - (width / 2);
-
-            scrollViewRef?.current?.scrollTo({x: coords, y: 0, animated: true});
+            const buttonLayout = buttonsCoords[currentIndex];
+            scrollViewRef.current?.scrollTo({
+                // target X is button's X + hald of button's width - hald of screen width
+                x: buttonLayout.x + buttonLayout.width / 2 - (width / 2),
+                y: 0,
+                animated: true,
+            });
         }
-    };
-
-    const onLayout = index => e => (!buttonsCoords[index] || buttonsCoords[index].x !== e.x) && setCoords(e.nativeEvent.layout, index);
-
-    const onFlatListScroll = e => {
-        handleScroll(e);
-        buttonWatch();
     };
     const keyExtractor = (item, index) => String(index);
     const getItemLayout = (data, index) => ({
@@ -64,8 +55,6 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
         </View>
     );
 
-    const onPillPress = index => () => flatList.current?.scrollToIndex({index});
-
     return (
         <>
             <View style={[
@@ -79,7 +68,7 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
                         currentIndex={currentIndex}
                         x={x}
                         style={style}
-                        onPillPress={onPillPress}
+                        onPillPress={onButtonPress}
                     />
                 )}
                 {!isStaticPills && (
@@ -92,14 +81,14 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
                             <TouchableOpacity
                                 key={index}
                                 ref={buttonRef}
-                                onLayout={onLayout(index)}
+                                onLayout={onButtonLayout(index)}
                                 style={[
                                     styles.pillButton,
                                     style?.pillButton,
                                     index === currentIndex && styles.pillActive,
                                     index === currentIndex && style?.pillActive,
                                 ]}
-                                onPress={onPillPress(index)}
+                                onPress={onButtonPress(index)}
                             >
                                 {item.icon}
                                 <Text style={[
@@ -127,6 +116,7 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
                 renderItem={renderItem}
                 snapToAlignment={'center'}
                 style={styles.flatList}
+                initialScrollIndex={initialScrollIndex}
                 {...rest}
             />
         </>
