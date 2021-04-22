@@ -49,6 +49,11 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
         buttonWatch();
     };
     const keyExtractor = (item, index) => String(index);
+    const getItemLayout = (data, index) => ({
+        length: width,
+        offset: width * index,
+        index,
+    });
     const renderItem = ({item, index}) => (
         <View style={{width}}>
             {typeof item.component !== 'function' && item.component}
@@ -116,6 +121,7 @@ export default function Swiper({style, data, isStaticPills, ...rest}) {
                 onScroll={onFlatListScroll}
                 pagingEnabled
                 keyExtractor={keyExtractor}
+                getItemLayout={getItemLayout}
                 horizontal={true}
                 data={data}
                 renderItem={renderItem}
