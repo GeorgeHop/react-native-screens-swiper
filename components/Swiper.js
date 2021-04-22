@@ -45,13 +45,10 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
         offset: width * index,
         index,
     });
-    const renderItem = ({item, index}) => (
+    const renderItem = ({item: {component: Component, props = {}}, index}) => (
         <View style={{width}}>
-            {typeof item.component !== 'function' && item.component}
-            {typeof item.component === 'function' && item.component({
-                index,
-                ...(item.props || {}),
-            })}
+            {typeof Component !== 'function' && Component}
+            {typeof Component === 'function' && <Component {...props} index={index}/>}
         </View>
     );
 
