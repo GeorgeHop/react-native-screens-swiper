@@ -107,14 +107,17 @@ const styles = {
 
 ```JS
 const styles = {
-    borderActive: {
-        borderColor: '#f06292',
+    pillButton: {
+        backgroundColor: 'white',
+    },
+    pillActive: {
+        backgroundColor: 'yellow',
     },
     pillLabel: {
         color: 'gray',
     },
     activeLabel: {
-        color: '#ba2d65',
+        color: 'white',
     },
 };
 ```
@@ -134,7 +137,7 @@ const styles = {
 ```JS
 const styles = {
     borderActive: {
-        borderColor: '#f06292',
+        borderColor: 'pink',
     },
     pillLabel: {
         color: 'gray',
@@ -151,3 +154,15 @@ const styles = {
 </td>
 </tr>
 </table>
+
+## Props
+Below are the props you can pass to the React Component.
+
+| Prop  | Type | Default | Example | Description |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| data  | array | | [{component: 'your first screen component', tabLabel: 'first screen tabLabel'}, {component: 'your second screen component', tabLabel: 'second screen tabLabel'}] | Put array of screens with tab labels for displaying inside the component |
+| isStaticPills | boolean | false | isStaticPills={true} | When you need static navigation without scroll |
+| style | object | | {pillContainer: {backgroundColor: 'black', height: 50}} | The styles object for styling the swiper details. More about styling in Custom styling step.|
+
+## ToDo
+1. Check how it works with rtl.
