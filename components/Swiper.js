@@ -3,8 +3,8 @@ import {useWindowDimensions, FlatList, ScrollView, Text, TouchableOpacity, View}
 import StaticPills from "./StaticPills";
 import {usePrevious} from "../helpers/usePrevious";
 
-const isJSX = element => typeof element?.type === 'object';
-const isMemo = element => typeof element?.type === 'function';
+const isJSX = element => typeof element !== 'function' && typeof element?.type === 'object';
+const isMemo = element => typeof element !== 'function' && typeof element?.type === 'function';
 
 export default function Swiper({style, data, isStaticPills, initialScrollIndex, ...rest}) {
     const width = useWindowDimensions().width;
@@ -50,8 +50,8 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
     });
     const renderItem = ({item: {component: Component, props = {}}, index}) => (
         <View style={{width}}>
-            {typeof Component !== 'function' && isJSX(Component) && Component}
-            {typeof Component === 'function' || (typeof Component !== 'function' && isMemo(Component)) && <Component {...props} index={index}/>}
+            {isJSX(Component) && Component}
+            {(typeof Component === 'function' || isMemo(Component)) && <Component {...props} index={index}/>}
         </View>
     );
 
