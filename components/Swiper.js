@@ -80,7 +80,6 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
                         {!!data?.length && data.map((item, index) => (
                             <TouchableOpacity
                                 key={index}
-                                ref={buttonRef}
                                 onLayout={onButtonLayout(index)}
                                 style={[
                                     styles.pillButton,
