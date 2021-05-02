@@ -147,10 +147,34 @@ const styles = {
     },
 };
 ```
-
 </td>
 <td>
 <img src="https://user-images.githubusercontent.com/47904385/112871240-5b4f2980-90bf-11eb-9f15-d9673f247ad6.gif" alt="drawing" height="500"/>
+</td>
+</tr>
+</table>
+
+### Sticky header and children
+<table>
+<tr>
+<td>
+
+```JS
+<Swiper data={Screens} style={styles} isStaticPills={true} stickyHeaderEnabled={true}>
+    <View
+        style={{
+          height: 350,
+          backgroundColor: 'white',
+        }}
+    >
+        // other childrens here
+
+    </View>
+</Swiper>
+```
+</td>
+<td>
+<img src="https://user-images.githubusercontent.com/47904385/116812046-da1b0480-ab4c-11eb-9b9b-46e37611c0c2.gif" alt="drawing" height="500"/>
 </td>
 </tr>
 </table>
