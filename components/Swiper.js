@@ -6,11 +6,12 @@ import {usePrevious} from "../helpers/usePrevious";
 const isJSX = element => typeof element !== 'function' && typeof element?.type === 'object';
 const isMemo = element => typeof element !== 'function' && typeof element?.type === 'function';
 
-export default function Swiper({style, data, isStaticPills, initialScrollIndex, ...rest}) {
+export default function Swiper({style, data, isStaticPills, initialScrollIndex, stickyHeaderEnabled, children, ...rest}) {
     const width = useWindowDimensions().width;
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(initialScrollIndex || 0);
+    const [pillContainerHeight, setPillContainerHeight] = useState(0);
     const prevIndex = usePrevious(currentIndex);
     const buttonsCoords = React.useRef([]).current;
     const [x, setX] = useState(0);
@@ -56,51 +57,64 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
     );
 
     return (
-        <>
-            <View style={[
-                styles.pillContainer,
-                isStaticPills && styles.staticPillContainer,
-                style?.pillContainer,
-            ]}>
-                {!!isStaticPills && (
-                    <StaticPills
-                        data={data}
-                        currentIndex={currentIndex}
-                        x={x}
-                        style={style}
-                        onPillPress={onButtonPress}
-                    />
-                )}
-                {!isStaticPills && (
-                    <ScrollView
-                        ref={scrollViewRef}
-                        showsHorizontalScrollIndicator={false}
-                        horizontal={true}
-                    >
-                        {!!data?.length && data.map((item, index) => (
-                            <TouchableOpacity
-                                key={index}
-                                onLayout={onButtonLayout(index)}
-                                style={[
-                                    styles.pillButton,
-                                    style?.pillButton,
-                                    index === currentIndex && styles.pillActive,
-                                    index === currentIndex && style?.pillActive,
-                                ]}
-                                onPress={onButtonPress(index)}
-                            >
-                                {item.icon}
-                                <Text style={[
-                                    styles.pillLabel,
-                                    style?.pillLabel,
-                                    index === currentIndex && (style?.activeLabel || styles.pillLabelActive),
-                                ]}>
-                                    {item.tabLabel}
-                                </Text>
-                            </TouchableOpacity>
-                        ))}
-                    </ScrollView>
-                )}
+        <ScrollView
+            stickyHeaderIndices={stickyHeaderEnabled ? [1] : null}
+        >
+            {children}
+            <View style={{
+                overflow: 'hidden',
+                height: pillContainerHeight + 10,
+            }}>
+                <View
+                    onLayout={(event) => {
+                        let {x, y, width, height} = event.nativeEvent.layout;
+                        setPillContainerHeight(height)
+                    }}
+                    style={[
+                        styles.pillContainer,
+                        isStaticPills && styles.staticPillContainer,
+                        style?.pillContainer,
+                    ]}>
+                    {!!isStaticPills && (
+                        <StaticPills
+                            data={data}
+                            currentIndex={currentIndex}
+                            x={x}
+                            style={style}
+                            onPillPress={onButtonPress}
+                        />
+                    )}
+                    {!isStaticPills && (
+                        <ScrollView
+                            ref={scrollViewRef}
+                            showsHorizontalScrollIndicator={false}
+                            horizontal={true}
+                        >
+                            {!!data?.length && data.map((item, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    onLayout={onButtonLayout(index)}
+                                    style={[
+                                        styles.pillButton,
+                                        style?.pillButton,
+                                        index === currentIndex && styles.pillActive,
+                                        index === currentIndex && style?.pillActive,
+                                    ]}
+                                    onPress={onButtonPress(index)}
+                                >
+                                    {item.icon}
+                                    <Text style={[
+                                        styles.pillLabel,
+                                        style?.pillLabel,
+                                        index === currentIndex && (style?.activeLabel || styles.pillLabelActive),
+                                    ]}>
+                                        {item.tabLabel}
+                                    </Text>
+                                </TouchableOpacity>
+                            ))}
+                        </ScrollView>
+                    )}
+                </View>
             </View>
             <FlatList
                 ref={flatList}
@@ -118,7 +132,7 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
                 initialScrollIndex={initialScrollIndex}
                 {...rest}
             />
-        </>
+        </ScrollView>
     );
 };
 
