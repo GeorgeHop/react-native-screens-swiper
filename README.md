@@ -160,7 +160,12 @@ const styles = {
 <td>
 
 ```JS
-<Swiper data={Screens} style={styles} isStaticPills={true} stickyHeaderEnabled={true}>
+<Swiper 
+    data={Screens} 
+    style={styles} 
+    isStaticPills={true} 
+    stickyHeaderEnabled={true}
+>
     <View
         style={{
           height: 350,
