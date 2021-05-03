@@ -1,6 +1,7 @@
 import React, {useRef, useState} from "react";
 import {useWindowDimensions, FlatList, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import StaticPills from "./StaticPills";
+import Container from "./Container";
 import {usePrevious} from "../helpers/usePrevious";
 
 const isJSX = element => typeof element !== 'function' && typeof element?.type === 'object';
@@ -57,8 +58,8 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
     );
 
     return (
-        <ScrollView
-            stickyHeaderIndices={stickyHeaderEnabled ? [1] : null}
+        <Container
+            stickyHeaderEnabled={stickyHeaderEnabled}
         >
             {children}
             <View style={{
@@ -132,7 +133,7 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
                 initialScrollIndex={initialScrollIndex}
                 {...rest}
             />
-        </ScrollView>
+        </Container>
     );
 };
 
