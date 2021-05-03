@@ -1,9 +1,9 @@
 import React from 'react';
 import {ScrollView} from 'react-native';
 
-export default function Container({stickyHeaderEnabled, children, ...rest}) {
+export default function Container({stickyHeaderEnabled, children, scrollableContainer, ...rest}) {
     return(
-        stickyHeaderEnabled ? (
+        scrollableContainer ? (
             <ScrollView
                 stickyHeaderIndices={stickyHeaderEnabled ? [1] : null}
                 {...rest}

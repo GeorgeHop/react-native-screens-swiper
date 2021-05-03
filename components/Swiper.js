@@ -7,7 +7,7 @@ import {usePrevious} from "../helpers/usePrevious";
 const isJSX = element => typeof element !== 'function' && typeof element?.type === 'object';
 const isMemo = element => typeof element !== 'function' && typeof element?.type === 'function';
 
-export default function Swiper({style, data, isStaticPills, initialScrollIndex, stickyHeaderEnabled, children, ...rest}) {
+export default function Swiper({style, data, isStaticPills, initialScrollIndex, stickyHeaderEnabled, children, scrollableContainer, ...rest}) {
     const width = useWindowDimensions().width;
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
@@ -60,6 +60,7 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
     return (
         <Container
             stickyHeaderEnabled={stickyHeaderEnabled}
+            scrollableContainer={scrollableContainer}
         >
             {children}
             <View style={{
