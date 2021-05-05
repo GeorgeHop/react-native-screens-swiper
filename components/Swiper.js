@@ -12,7 +12,6 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
     const flatList = useRef(null);
     const scrollViewRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(initialScrollIndex || 0);
-    const [pillContainerHeight, setPillContainerHeight] = useState(0);
     const prevIndex = usePrevious(currentIndex);
     const buttonsCoords = React.useRef([]).current;
     const [x, setX] = useState(0);
@@ -63,15 +62,8 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
             scrollableContainer={scrollableContainer}
         >
             {children}
-            <View style={{
-                overflow: 'hidden',
-                height: pillContainerHeight + 10,
-            }}>
+            <View style={[style?.pillsOverflow]}>
                 <View
-                    onLayout={(event) => {
-                        let {x, y, width, height} = event.nativeEvent.layout;
-                        setPillContainerHeight(height)
-                    }}
                     style={[
                         styles.pillContainer,
                         isStaticPills && styles.staticPillContainer,
