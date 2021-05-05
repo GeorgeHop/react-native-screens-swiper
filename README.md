@@ -155,6 +155,9 @@ const styles = {
 </table>
 
 ### Sticky header and children
+
+You can use sticky header only when scrollableContainer={true} so you need to pass it first. And after adding stickyHeaderEnabled={true} you can see the magic !
+
 <table>
 <tr>
 <td>
@@ -165,6 +168,7 @@ const styles = {
     style={styles} 
     isStaticPills={true} 
     stickyHeaderEnabled={true}
+    scrollableContainer={true}
 >
     <View
         style={{
@@ -191,6 +195,7 @@ Below are the props you can pass to the React Component.
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 | data  | array | | [{component: 'your first screen component', tabLabel: 'first screen tabLabel'}, {component: 'your second screen component', tabLabel: 'second screen tabLabel'}] | Put array of screens with tab labels for displaying inside the component |
 | isStaticPills | boolean | false | isStaticPills={true} | When you need static navigation without scroll |
-| stickyHeaderEnabled | boolean | false | stickyHeaderEnabled={true} | Give header possibility to stick to top of the screen. |
+| stickyHeaderEnabled | boolean | false | stickyHeaderEnabled={true} | Can used only with scrollableContainer={true}. Give header possibility to stick to top of the screen. |
+| scrollableContainer | boolean | false | scrollableContainer={true} | Added scrollable container. |
 | children | component | | ``` <Swiper><YourComponent/></Swiper> ``` | You can add your own top component in swiper. For example profile info. |
 | style | object | | {pillContainer: {backgroundColor: 'black', height: 50}} | The styles object for styling the swiper details. More about styling in Custom styling step.|
