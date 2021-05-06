@@ -97,6 +97,12 @@ const styles = {
     
     // [View] Border of active pill (:warning: opacity will override animation's opacity)
     borderActive: {},
+    
+     // [View] Border of active pill
+     pillsOverflow: {
+        // Needed if you want to add only bottom shadow
+        // Just add the shadow for pillContainer and here add the overflow: 'hidden', and height 
+     }
 };
 ```
 
