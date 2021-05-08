@@ -162,7 +162,7 @@ const styles = {
 
 ### Sticky header and children
 
-You can use sticky header only when scrollableContainer={true} so you need to pass it first. And after adding stickyHeaderEnabled={true} you can see the magic !
+You can use sticky header only when scrollableContainer={true} so you need to pass it first. And after adding stickyHeaderEnabled={true} and stickyHeaderIndex={1} you can see the magic !
 
 <table>
 <tr>
@@ -175,6 +175,7 @@ You can use sticky header only when scrollableContainer={true} so you need to pa
     isStaticPills={true} 
     stickyHeaderEnabled={true}
     scrollableContainer={true}
+    stickyHeaderIndex={1}
 >
     <View
         style={{
@@ -205,3 +206,5 @@ Below are the props you can pass to the React Component.
 | scrollableContainer | boolean | false | scrollableContainer={true} | Added scrollable container. |
 | children | component | | ``` <Swiper><YourComponent/></Swiper> ``` | You can add your own top component in swiper. For example profile info. |
 | style | object | | {pillContainer: {backgroundColor: 'black', height: 50}} | The styles object for styling the swiper details. More about styling in Custom styling step.|
+| initialScrollIndex | int | | initialScrollIndex={1} | Screen index which will be opened on first open. |
+| stickyHeaderIndex | int | | stickyHeaderIndex={1} | An index of child indices determining which children get docked to the top of the screen when scrolling. |
