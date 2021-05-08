@@ -2,13 +2,20 @@ import React from 'react';
 import {useWindowDimensions, Text, TouchableOpacity, View} from "react-native";
 import {getOpacity} from "../helpers/getOpacity";
 
-export default function StaticPills({data, style, x, currentIndex, onPillPress}) {
+export default function StaticPills({data, style, x, currentIndex, onPillPress, containerRef, scrollableContainer}) {
     const width = useWindowDimensions().width;
     return (
         <View style={styles.container}>
             {!!data?.length && data.map((item, index) => (
                 <View key={index}>
-                    <TouchableOpacity onPress={onPillPress(index)} style={[
+                    <TouchableOpacity
+                        onPress={() => {
+                            onPillPress(index)
+
+                            if (index === currentIndex && scrollableContainer)
+                                containerRef?.current?.scrollTo({ x: 0, y: 0, animated: true })
+                        }}
+                         style={[
                         {
                             paddingHorizontal: 5,
                             width: width / data.length,

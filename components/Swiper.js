@@ -7,9 +7,10 @@ import {usePrevious} from "../helpers/usePrevious";
 const isJSX = element => typeof element !== 'function' && typeof element?.type === 'object';
 const isMemo = element => typeof element !== 'function' && typeof element?.type === 'function';
 
-export default function Swiper({style, data, isStaticPills, initialScrollIndex, stickyHeaderEnabled, children, scrollableContainer, ...rest}) {
+export default function Swiper({style, data, isStaticPills, initialScrollIndex, stickyHeaderEnabled, children, stickyHeaderIndex, scrollableContainer, ...rest}) {
     const width = useWindowDimensions().width;
     const flatList = useRef(null);
+    const containerRef = useRef(null);
     const scrollViewRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(initialScrollIndex || 0);
     const prevIndex = usePrevious(currentIndex);
@@ -58,8 +59,10 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
 
     return (
         <Container
+            containerRef={containerRef}
             stickyHeaderEnabled={stickyHeaderEnabled}
             scrollableContainer={scrollableContainer}
+            stickyHeaderIndex={stickyHeaderIndex}
         >
             {children}
             <View style={[style?.pillsOverflow]}>
@@ -71,6 +74,8 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
                     ]}>
                     {!!isStaticPills && (
                         <StaticPills
+                            containerRef={containerRef}
+                            scrollableContainer={scrollableContainer}
                             data={data}
                             currentIndex={currentIndex}
                             x={x}
