@@ -22,7 +22,7 @@ export default function Swiper({style, data, isStaticPills, initialScrollIndex, 
         if (buttonsCoords[index]?.x !== e.x)
             buttonsCoords[index] = e.nativeEvent.layout;
     };
-    const onButtonPress = index => () => flatList.current?.scrollToIndex({index});
+    const onButtonPress = index => flatList.current?.scrollToIndex({index});
 
     const onFlatListScroll = e => {
         // update X
