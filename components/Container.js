@@ -6,7 +6,7 @@ export default function Container({stickyHeaderEnabled, children, scrollableCont
         scrollableContainer ? (
             <ScrollView
                 ref={containerRef}
-                stickyHeaderIndices={stickyHeaderEnabled ? [1] : null}
+                stickyHeaderIndices={stickyHeaderEnabled ? [stickyHeaderIndex] : null}
                 {...rest}
             >
                 {children}
