@@ -16,6 +16,18 @@ Simple screens' swiper library with scrollable or static tab navigation. Fully s
 </tr>
 </table>
 
+# :grey_exclamation: Attention :grey_exclamation:
+
+We working on the new version of swiper ! In new version we will make: 
+1. Fix all problems of our sticky header container with childrens to make it more looks like in instagram profile. :fire:
+2. Cleanup and simplify huge part of components. :fire:
+3. New animation for nav. :fire:
+4. TypeScript support. :fire:
+
+:collision: For now it is all ! But if you have any proposal about performance or improvements of this lib. just write to us. :collision:
+
+New version will be available shortly :watch:
+
 # Installation
 expo: `expo install react-native-screens-swiper`  
 npm: `npm i react-native-screens-swiper`  
