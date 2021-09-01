@@ -23,6 +23,7 @@ We working on the new version of swiper ! In new version we will make:
 2. Cleanup and simplify huge part of components. :fire:
 3. New animation for nav. :fire:
 4. TypeScript support. :fire:
+5. Big docs. update for better understanding and user experience.
 
 :collision: For now it is all ! But if you have any proposal about performance or improvements of this lib. just write to us. :collision:
 
