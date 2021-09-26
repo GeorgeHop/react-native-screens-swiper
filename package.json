@@ -1,6 +1,6 @@
 {
   "name": "react-native-screens-swiper",
-  "version": "1.1.12",
+  "version": "1.2.0",
   "description": "This lib. provide swiper view functionality with tab navigation on the top.",
   "main": "index.js",
   "repository": {
