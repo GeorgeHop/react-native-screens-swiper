@@ -1,13 +1,12 @@
 import React from 'react';
-import {useWindowDimensions, Text, TouchableOpacity, View} from "react-native";
+import {Text, TouchableOpacity, View} from "react-native";
 import {getOpacity} from "../helpers/getOpacity";
 
 export default function StaticPills({data, style, x, currentIndex, onPillPress, containerRef, scrollableContainer}) {
-    const width = useWindowDimensions().width;
     return (
         <View style={styles.container}>
             {!!data?.length && data.map((item, index) => (
-                <View key={index}>
+                <View key={index} style={{flex: 1}}>
                     <TouchableOpacity
                         onPress={() => {
                             onPillPress(index)
@@ -15,14 +14,16 @@ export default function StaticPills({data, style, x, currentIndex, onPillPress, 
                             if (index === currentIndex && scrollableContainer)
                                 containerRef?.current?.scrollTo({ x: 0, y: 0, animated: true })
                         }}
-                         style={[
-                        {
-                            paddingHorizontal: 5,
-                            width: width / data.length,
-                            alignItems: 'center',
-                        },
-                        style?.pillButton,
-                    ]}>
+                        style={[
+                            {
+                                paddingHorizontal: 5,
+                                flexGrow: 1,
+                                flex: 1,
+                                alignItems: 'center',
+                            },
+                            style?.pillButton,
+                        ]}
+                    >
                         <Text style={[
                             style?.pillLabel || styles.pillLabel,
                             index === currentIndex && (style?.activeLabel || styles.activePill),
