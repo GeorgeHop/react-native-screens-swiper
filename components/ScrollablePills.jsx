@@ -27,7 +27,6 @@ export default function ScrollablePills({data, scrollViewRef, onButtonLayout, st
                             width: '100%',
                             position: 'absolute',
                             opacity: getOpacity(index, x),
-                            backgroundColor: 'blue'
                         }}
                     />
                     <View
