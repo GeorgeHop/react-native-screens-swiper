@@ -8,6 +8,7 @@ import SwiperHeader from "./SwiperHeader";
 /**
  * Swiper component
  * @param {Array[]} data Array of items to render
+ * @param {?Function} renderPills Pills render customizer that allows wrapping header with custom components
  * @param {?Number} initialScrollIndex Initial screen to show
  * @param {?boolean} stickyHeaderEnabled Enable or disable sticky header for component
  * @param {?boolean} isStaticPills Enable or disable static pills
@@ -21,17 +22,18 @@ import SwiperHeader from "./SwiperHeader";
  */
 
 export default function Swiper({
-                                   style,
-                                   data,
-                                   isStaticPills,
-                                   initialScrollIndex,
-                                   stickyHeaderEnabled,
-                                   children,
-                                   stickyHeaderIndex,
-                                   scrollableContainer,
-                                   onSwiperScroll,
-                                   keyboardDismissOnScroll,
-                                   ...rest
+    style,
+    data,
+    renderPills,
+    isStaticPills,
+    initialScrollIndex,
+    stickyHeaderEnabled,
+    children,
+    stickyHeaderIndex,
+    scrollableContainer,
+    onSwiperScroll,
+    keyboardDismissOnScroll,
+    ...rest
 }) {
     const width = useWindowDimensions().width;
     const flatList = useRef(null);
@@ -93,6 +95,21 @@ export default function Swiper({
         index,
     });
 
+    const pills = (
+        <SwiperHeader
+            isStaticPills={isStaticPills}
+            style={style}
+            containerRef={containerRef}
+            scrollViewRef={scrollViewRef}
+            scrollableContainer={scrollableContainer}
+            data={data}
+            currentIndex={currentIndex}
+            x={x}
+            onButtonPress={onButtonPress}
+            onButtonLayout={onButtonLayout}
+        />
+    );
+
     return (
         <Container
             containerRef={containerRef}
@@ -101,18 +118,7 @@ export default function Swiper({
             stickyHeaderIndex={stickyHeaderIndex}
         >
             {children}
-            <SwiperHeader
-                isStaticPills={isStaticPills}
-                style={style}
-                containerRef={containerRef}
-                scrollViewRef={scrollViewRef}
-                scrollableContainer={scrollableContainer}
-                data={data}
-                currentIndex={currentIndex}
-                x={x}
-                onButtonPress={onButtonPress}
-                onButtonLayout={onButtonLayout}
-            />
+            {renderPills ? renderPills(pills) : pills}
             <FlatList
                 ref={flatList}
                 showsHorizontalScrollIndicator={false}
