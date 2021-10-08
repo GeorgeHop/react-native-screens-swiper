@@ -56,7 +56,7 @@ export default function Swiper({
             });
     };
     // Scroll to pressed button index
-    const onButtonPress = index => () => {
+    const onButtonPress = index => {
         if (keyboardDismissOnScroll)
             Keyboard.dismiss();
 

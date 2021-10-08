@@ -18,7 +18,7 @@ export default function ScrollablePills({data, scrollViewRef, onButtonLayout, st
                         style?.pillButton,
                         index === currentIndex && (style?.pillActive || styles.pillActive),
                     ]}
-                    onPress={onButtonPress(index)}
+                    onPress={() => onButtonPress(index)}
                 >
                     <View
                         style={{
