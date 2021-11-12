@@ -4,7 +4,7 @@ import {getOpacity} from "../helpers/getOpacity";
 
 export default function StaticPills({data, style, x, currentIndex, onPillPress, containerRef, scrollableContainer}) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, style?.staticPillsContainer]}>
             {!!data?.length && data.map((item, index) => (
                 <View key={index} style={{flex: 1}}>
                     <TouchableOpacity

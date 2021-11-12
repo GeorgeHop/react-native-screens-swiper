@@ -96,6 +96,9 @@ const styles = {
     // [View] Pills container
     pillContainer: {},
 
+    // [View] Static pills container
+    staticPillsContainer: {},
+
     // [View] Button
     pillButton: {},
 
