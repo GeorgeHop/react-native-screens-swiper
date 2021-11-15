@@ -17,6 +17,7 @@ import SwiperHeader from "./SwiperHeader";
  * @param {?boolean} scrollableContainer Enable or disable scrollable container for component
  * @param {?Object} style Styles
  * @param {Function} onSwiperScroll function which returns event when screen swiped
+ * @param {?Function} onActiveScreenChange function that is fired when active screen index changes
  * @param {?boolean} keyboardDismissOnScroll dismiss keyboard when screens scroll
  * @param rest
  */
@@ -32,6 +33,7 @@ export default function Swiper({
     stickyHeaderIndex,
     scrollableContainer,
     onSwiperScroll,
+    onActiveScreenChange,
     keyboardDismissOnScroll,
     ...rest
 }) {
@@ -71,8 +73,10 @@ export default function Swiper({
         setX(e.nativeEvent.contentOffset.x);
         // update current screen index
         const index = Math.round(e.nativeEvent.contentOffset.x / width);
-        if (index !== currentIndex)
+        if (index !== currentIndex) {
             setCurrentIndex(index);
+            onActiveScreenChange?.(index);
+        };
 
         // scroll to next button if have to
         if (buttonsCoords[currentIndex] && prevIndex !== currentIndex) {
